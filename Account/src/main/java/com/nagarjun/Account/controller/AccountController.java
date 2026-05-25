@@ -9,6 +9,8 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -16,14 +18,23 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api")
-@AllArgsConstructor
 @Validated
 public class AccountController {
 
 
     private final AccountService accountService;
 
-       //create account
+    @Value("${build.version}")
+    private String buildVersion;
+
+
+
+    @Autowired
+    public AccountController(AccountService accountService) {
+        this.accountService = accountService;
+    }
+
+    //create account
     @PostMapping("/create")
     public ResponseEntity<ResponseDto>createAccount(@Valid @RequestBody CustomerDto customerDto){
          accountService.createAccount(customerDto);
@@ -70,6 +81,11 @@ public class AccountController {
                     .status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(new ResponseDto(AccountsConstants.STATUS_417,AccountsConstants.MESSAGE_417_DELETE));
         }
+    }
+
+    @GetMapping("/build-info")
+    public ResponseEntity<String>getBuildInfo(){
+        return ResponseEntity.status(HttpStatus.OK).body(buildVersion);
     }
 
 
