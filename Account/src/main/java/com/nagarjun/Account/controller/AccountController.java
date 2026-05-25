@@ -15,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.core.env.Environment;
 
 @RestController
 @RequestMapping("api")
@@ -28,11 +29,18 @@ public class AccountController {
     private String buildVersion;
 
 
+    @Autowired
+    private Environment environment;
+
+
 
     @Autowired
     public AccountController(AccountService accountService) {
         this.accountService = accountService;
     }
+
+
+
 
     //create account
     @PostMapping("/create")
@@ -83,9 +91,17 @@ public class AccountController {
         }
     }
 
+
+    //reading the value from @Value
     @GetMapping("/build-info")
     public ResponseEntity<String>getBuildInfo(){
         return ResponseEntity.status(HttpStatus.OK).body(buildVersion);
+    }
+
+   //reading the environment values from environment interface
+    @GetMapping("/java-version")
+    public ResponseEntity<String>getJavaVersion(){
+        return ResponseEntity.status(HttpStatus.OK).body(environment.getProperty("JAVA_HOME"));
     }
 
 
