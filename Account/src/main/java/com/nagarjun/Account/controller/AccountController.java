@@ -1,14 +1,12 @@
 package com.nagarjun.Account.controller;
 
-
+import com.nagarjun.Account.dto.AccountsContactInfoDto;
 import com.nagarjun.Account.constants.AccountsConstants;
 import com.nagarjun.Account.dto.CustomerDto;
 import com.nagarjun.Account.dto.ResponseDto;
 import com.nagarjun.Account.service.AccountService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
-import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -31,6 +29,10 @@ public class AccountController {
 
     @Autowired
     private Environment environment;
+
+
+    @Autowired
+    private AccountsContactInfoDto accountsContactInfoDto;
 
 
 
@@ -102,6 +104,12 @@ public class AccountController {
     @GetMapping("/java-version")
     public ResponseEntity<String>getJavaVersion(){
         return ResponseEntity.status(HttpStatus.OK).body(environment.getProperty("JAVA_HOME"));
+    }
+
+    //reading the config values using the Configuration Properties Class
+    @GetMapping("/contact-info")
+    public ResponseEntity<AccountsContactInfoDto>getContactInfo(){
+        return ResponseEntity.status(HttpStatus.OK).body(accountsContactInfoDto);
     }
 
 
