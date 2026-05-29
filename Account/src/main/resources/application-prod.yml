@@ -14,19 +14,18 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
-
-  profiles:
-    active: prod
-
+  config:
+    activate:
+      on-profile: "prod"
 build :
   version:
-    "1.0"
+    "3.0"
 
 accounts:
-  message: "Welcome to NagsBank accounts related local APIs "
+  message: "Welcome to NagsBank accounts Prod Environment "
   contactDetails:
-    name: "Nagarjun - Developer"
+    name: "Nagarjun -Prod Developer"
     email: "Nagarjun@gmail.com.com"
   onCallSupport:
-    - (555) 555-1234
-    - (555) 523-1345
+    - (777) 555-1234
+    - (777) 523-1345

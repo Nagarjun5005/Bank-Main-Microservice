@@ -14,19 +14,19 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
-
-  profiles:
-    active: prod
+  config:
+    activate:
+      on-profile: "qa"
 
 build :
   version:
-    "1.0"
+    "2.0"
 
 accounts:
-  message: "Welcome to NagsBank accounts related local APIs "
+  message: "Welcome to NagsBank --->qa "
   contactDetails:
-    name: "Nagarjun - Developer"
+    name: "Nagarjun - QA"
     email: "Nagarjun@gmail.com.com"
   onCallSupport:
-    - (555) 555-1234
-    - (555) 523-1345
+    - (666) 555-1234
+    - (666) 523-1345
