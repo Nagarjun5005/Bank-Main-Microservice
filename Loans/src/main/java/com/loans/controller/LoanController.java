@@ -3,11 +3,14 @@ package com.loans.controller;
 
 import com.loans.constants.LoanConstants;
 import com.loans.dto.LoanDto;
+import com.loans.dto.LoansInfoDto;
 import com.loans.dto.ResponseDto;
 import com.loans.service.LoanService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -19,12 +22,24 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path="/api",produces = {
         MediaType.APPLICATION_JSON_VALUE
 })
-@AllArgsConstructor
 @Validated
 public class LoanController {
 
 
-    private LoanService loanService;
+    private final  LoanService loanService;
+
+
+
+    @Value("${build.version}")
+    private String buildVersion;
+
+
+    @Autowired
+    private LoansInfoDto loansInfoDto;
+
+    public LoanController(LoanService loanService) {
+        this.loanService = loanService;
+    }
 
     @PostMapping("/create")
     public ResponseEntity<ResponseDto> createLoan(@RequestParam
@@ -71,6 +86,18 @@ public class LoanController {
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED)
                     .body(new ResponseDto(LoanConstants.STATUS_417,LoanConstants.MESSAGE_417_DELETE));
         }
+    }
+
+
+    @GetMapping("build-info")
+    public ResponseEntity<String>buildInfo(){
+        return ResponseEntity.status(HttpStatus.OK).body(buildVersion);
+    }
+
+
+    @GetMapping("contact-info")
+    public ResponseEntity<LoansInfoDto>contactInfo(){
+        return ResponseEntity.status(HttpStatus.OK).body(loansInfoDto);
     }
 
 

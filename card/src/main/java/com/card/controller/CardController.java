@@ -2,11 +2,14 @@ package com.card.controller;
 
 import com.card.constants.CardConstants;
 import com.card.dto.CardDto;
+import com.card.dto.CardsInfoDto;
 import com.card.dto.ResponseDto;
 import com.card.service.CardService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -20,11 +23,21 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "/api", produces = {MediaType.APPLICATION_JSON_VALUE})
-@AllArgsConstructor
 @Validated
 public class CardController {
 
-    private CardService iCardsService;
+    private final CardService iCardsService;
+
+    @Value("${build.version}")
+    private String buildVersion;
+
+
+    @Autowired
+    private CardsInfoDto cardsInfoDto;
+
+    public CardController(CardService iCardsService) {
+        this.iCardsService = iCardsService;
+    }
 
 
     @PostMapping("/create")
@@ -77,5 +90,18 @@ public class CardController {
                     .body(new ResponseDto(CardConstants.STATUS_417, CardConstants.MESSAGE_417_DELETE));
         }
     }
+
+
+    @GetMapping("/build-info")
+    public ResponseEntity<String>buildInfo(){
+        return ResponseEntity.status(HttpStatus.OK).body(buildVersion);
+    }
+
+
+    @GetMapping("/contact-info")
+    public ResponseEntity<CardsInfoDto>contactInfo(){
+        return ResponseEntity.status(HttpStatus.OK).body(cardsInfoDto);
+    }
+
 
 }

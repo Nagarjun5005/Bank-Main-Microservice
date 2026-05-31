@@ -14,15 +14,16 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
-  profiles:
-    active: prod
+  config:
+    activate:
+      on-profile: "qa"
 
 build:
   version:
-    "7.1"
+    "7.3"
 
 loans:
-  message : "Hello This Message is from loans config --->default"
+  message : "Hello This Message is from loans config -->From QA"
   contactDetails:
     name: "Nagarjun--->SDE2"
     email: "nagarjun@gmail.com"

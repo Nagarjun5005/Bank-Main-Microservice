@@ -1,5 +1,5 @@
 server:
-  port: 8090
+  port: 9000
 spring:
   datasource:
     url: jdbc:h2:mem:testdb
@@ -14,18 +14,18 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
-  profiles:
-    active: prod
-
-build:
+  config:
+    activate:
+      on-profile: "qa"
+build :
   version:
-    "7.1"
+    "4.2"
 
-loans:
-  message : "Hello This Message is from loans config --->default"
+accounts:
+  message: "Hello This Is CARDS -->QA ENVIRONMENT "
   contactDetails:
-    name: "Nagarjun--->SDE2"
-    email: "nagarjun@gmail.com"
+    name: "Nagarjun -Card  Developer"
+    email: "Nagarjun@gmail.com.com"
   onCallSupport:
-    - 987654321
-    - 123456789
+    - (999) 555-1234
+    - (999) 523-1345
