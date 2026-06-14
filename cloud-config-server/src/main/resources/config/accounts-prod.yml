@@ -1,0 +1,12 @@
+build :
+  version:
+    "3.0"
+
+accounts:
+  message: "Welcome to NagsBank accounts Prod Environment "
+  contactDetails:
+    name: "Nagarjun -Prod Developer"
+    email: "Nagarjun@gmail.com.com"
+  onCallSupport:
+    - (777) 555-1234
+    - (777) 523-1345

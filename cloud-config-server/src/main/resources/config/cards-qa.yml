@@ -1,0 +1,12 @@
+build :
+  version:
+    "4.2"
+
+cards:
+  message: "Hello This Is CARDS -->QA ENVIRONMENT "
+  contactDetails:
+    name: "Nagarjun -Card  Developer"
+    email: "Nagarjun@gmail.com.com"
+  onCallSupport:
+    - (999) 555-1234
+    - (999) 523-1345

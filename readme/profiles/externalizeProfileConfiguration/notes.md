@@ -686,10 +686,10 @@ Active Profiles: qa
 
 **Example:**
 ```yaml
-# application.yml
+# cards.yml
 app.environment: local
 
-# application-qa.yml
+# cards-qa.yml
 app.environment: qa
 
 # Result: qa
@@ -748,7 +748,7 @@ SPRING_PROFILES_ACTIVE=qa
 build.version = 4.0 (from BUILD_VERSION)
 server.port = 9090 (from SERVER_PORT)
 database.url = jdbc:mysql://localhost:3306/mydb
-# Also loads application-qa.yml
+# Also loads cards-qa.yml
 ```
 
 ### IntelliJ Configuration Summary
@@ -1012,7 +1012,7 @@ Configuration can be overridden using four methods (in order of priority):
 
 4. **Profile-Specific Files** (Lowest)
    ```yaml
-   application-qa.yml
+   cards-qa.yml
    ```
 
 **Higher priority always overrides lower priority.**
@@ -1312,9 +1312,9 @@ java -jar app.jar --spring.profiles.active=eu-west
 
 ```yaml
 # ✅ GOOD
-application.yml          # Base config
+cards.yml          # Base config
 application-dev.yml      # Dev specific
-application-prod.yml     # Prod specific
+cards-prod.yml     # Prod specific
 ```
 
 ### 2. Never Hardcode Sensitive Data

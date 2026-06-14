@@ -1,0 +1,12 @@
+build:
+  version:
+    "4.0"
+
+cards:
+  message: "This Info Is From Cards --->Default  "
+  contactDetails:
+    name: "Nagarjun - Developer"
+    email: "Nagarjun@gmail.com.com"
+  onCallSupport:
+    - (000) 555-1234
+    - (000) 523-1345

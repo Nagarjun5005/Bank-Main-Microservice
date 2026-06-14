@@ -1,0 +1,12 @@
+build:
+  version:
+    "7.2"
+
+loans:
+  message : "Hello This Message is from loans config --->prod environment"
+  contactDetails:
+    name: "Nagarjun--->SDE2"
+    email: "nagarjun@gmail.com"
+  onCallSupport:
+    - 987654321
+    - 123456789

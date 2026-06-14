@@ -21,7 +21,7 @@ build :
   version:
     "4.1"
 
-accounts:
+cards:
   message: "Hello This Is CARDS -->PRODS ENVIRONMENT "
   contactDetails:
     name: "Nagarjun -Card  Developer"

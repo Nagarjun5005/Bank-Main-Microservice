@@ -1,0 +1,12 @@
+build :
+  version:
+    "2.0"
+
+accounts:
+  message: "Welcome to NagsBank --->qa "
+  contactDetails:
+    name: "Nagarjun - QA"
+    email: "Nagarjun@gmail.com.com"
+  onCallSupport:
+    - (666) 555-1234
+    - (666) 523-1345

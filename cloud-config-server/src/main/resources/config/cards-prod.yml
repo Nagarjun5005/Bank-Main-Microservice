@@ -1,0 +1,12 @@
+build :
+  version:
+    "4.1"
+
+cards:
+  message: "Hello This Is CARDS -->PRODS ENVIRONMENT "
+  contactDetails:
+    name: "Nagarjun -Card  Developer"
+    email: "Nagarjun@gmail.com.com"
+  onCallSupport:
+    - (888) 555-1234
+    - (888) 523-1345
