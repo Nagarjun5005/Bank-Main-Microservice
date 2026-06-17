@@ -16,3 +16,10 @@ spring:
            force-pull: true
 server:
   port: 8071
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

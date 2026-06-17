@@ -26,6 +26,12 @@ build :
   version:
     "1.0"
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
 accounts:
   message: "Welcome to NagsBank accounts related local APIs "
   contactDetails:
