@@ -20,6 +20,22 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+  cloud:
+    bus:
+      enabled: true
+    stream:
+      default-binder: rabbit
+      # THIS IS THE KEY - Use a named queue group, not anonymous
+      bindings:
+        springCloudBusInput:
+          destination: springCloudBus
+          group: ${spring.application.name}
 
 management:
   endpoints:
@@ -30,6 +46,8 @@ management:
 build:
   version:
     "7.1"
+
+
 
 loans:
   message : "Hello This Message is from loans config --->default"
