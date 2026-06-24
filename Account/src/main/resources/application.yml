@@ -1,42 +1,63 @@
 server:
   port: 8080
+
 spring:
   application:
-    name: "accounts"
+    name: accounts
   profiles:
-    active: "prod"
+    active: prod
   config:
-    import: "optional:configserver:http://localhost:8071/"
+    import: optional:configserver:http://localhost:8071/
 
   datasource:
     url: jdbc:h2:mem:testdb
     driverClassName: org.h2.Driver
     username: sa
     password: ''
+
   h2:
     console:
       enabled: true
+
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: update
     show-sql: true
 
-build :
-  version:
-    "1.0"
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+  cloud:
+    bus:
+      enabled: true
+    stream:
+      default-binder: rabbit
+      # THIS IS THE KEY - Use a named queue group, not anonymous
+      bindings:
+        springCloudBusInput:
+          destination: springCloudBus
+          group: ${spring.application.name}
 
 management:
   endpoints:
     web:
       exposure:
-        include: "*"
+        include: '*'
+
+
+-build :
+  -  version:
+  -    "1.0"
 
 accounts:
-  message: "Welcome to NagsBank accounts related local APIs "
+  message: Welcome to NagsBank accounts related local APIs
   contactDetails:
-    name: "Nagarjun - Developer"
-    email: "Nagarjun@gmail.com.com"
+    name: Nagarjun - Developer
+    email: Nagarjun@gmail.com
   onCallSupport:
     - (555) 555-1234
     - (555) 523-1345
