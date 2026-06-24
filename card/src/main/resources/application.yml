@@ -24,6 +24,12 @@ build:
   version:
     "4.0"
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
 cardS:
   message: "This Info Is From Cards --->Default  "
   contactDetails:
