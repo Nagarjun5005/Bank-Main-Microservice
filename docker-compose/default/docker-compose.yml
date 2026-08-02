@@ -15,9 +15,8 @@ services:
       file: common-config.yml
       service: network-deploy-service
 
-
   configserver:
-    image: "nagarjun20/configserver:docker"
+    image: "nagarjun20/cloud-config:docker"
     container_name: configserver-ms
     ports:
       - "8071:8071"
