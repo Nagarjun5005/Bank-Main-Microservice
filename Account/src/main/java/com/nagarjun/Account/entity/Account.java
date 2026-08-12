@@ -3,6 +3,7 @@ package com.nagarjun.Account.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.*;
 
 @Entity
@@ -11,6 +12,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@Table(name = "accounts")
 public class Account extends BaseEntity {
 
     private long customerId;
