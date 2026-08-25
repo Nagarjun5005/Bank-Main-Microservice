@@ -136,7 +136,7 @@
 				<version>3.4.6</version>
 				<configuration>
 					<to>
-						<image>nagarjun20/accounts:docker</image>
+						<image>nagarjun20/accounts:docker-mysql</image>
 					</to>
 				</configuration>
 			</plugin>

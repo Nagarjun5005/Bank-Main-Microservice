@@ -153,7 +153,7 @@
 				<version>3.4.6</version>
 				<configuration>
 					<to>
-						<image>nagarjun20/cards:docker</image>
+						<image>nagarjun20/cards:docker-mysql</image>
 					</to>
 				</configuration>
 			</plugin>

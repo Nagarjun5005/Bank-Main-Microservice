@@ -1,4 +1,37 @@
 services:
+  accountsdb:
+    container_name: accountsdb
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_DATABASE: accountsdb
+    extends:
+      file: common-config.yml
+      service: microservice-db-config
+
+
+  loansdb:
+    container_name: loansdb
+    ports:
+      - "3308:3306"
+    environment:
+      MYSQL_DATABASE: loansdb
+    extends:
+      file: common-config.yml
+      service: microservice-db-config
+
+
+  cardsdb:
+    container_name: cardsdb
+    ports:
+      - "3309:3306"
+    environment:
+      MYSQL_DATABASE: cardsdb
+    extends:
+      file: common-config.yml
+      service: microservice-db-config
+
+
   rabbit:
     image: rabbitmq:4-management
     hostname: rabbitmq
@@ -16,7 +49,7 @@ services:
       service: network-deploy-service
 
   configserver:
-    image: "nagarjun20/cloud-config:docker"
+    image: "nagarjun20/cloud-config:docker-mysql"
     container_name: configserver-ms
     ports:
       - "8071:8071"
@@ -37,49 +70,60 @@ services:
 
 
   accounts:
-    image: "nagarjun20/accounts:docker"
+    image: "nagarjun20/accounts:docker-mysql"
     container_name: accounts-ms
     ports:
       - "8080:8080"
     depends_on:
       configserver:
         condition: service_healthy
+      accountsdb:
+        condition: service_healthy
     extends:
       file: common-config.yml
       service:  microservice-configserver-config
     environment:
       SPRING_APPLICATION_NAME: "accounts"
+      SPRING_DATASOURCE_URL: jdbc:mysql://accountsdb:3306/accountsdb
 
 
 
 
   loans:
-    image: "nagarjun20/loans:docker"
+    image: "nagarjun20/loans:docker-mysql"
     container_name: loans-ms
     ports:
       - "8090:8090"
     depends_on:
       configserver:
         condition: service_healthy
+      loansdb:
+        condition: service_healthy
     extends:
       file: common-config.yml
       service: microservice-configserver-config
     environment:
       SPRING_APPLICATION_NAME: "loans"
+      SPRING_DATASOURCE_URL: jdbc:mysql://loansdb:3306/loansdb
+
 
 
 
 
   cards:
-    image: "nagarjun20/cards:docker"
+    image: "nagarjun20/cards:docker-mysql"
     container_name: cards-ms
     ports:
       - "9000:9000"
     depends_on:
       configserver:
         condition: service_healthy
+      cardsdb:
+        condition: service_healthy
     environment:
       SPRING_APPLICATION_NAME: "cards"
+      SPRING_DATASOURCE_URL: jdbc:mysql://cardsdb:3306/cardsdb
+
     extends:
       file: common-config.yml
       service: microservice-configserver-config
